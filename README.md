@@ -1,4 +1,4 @@
-# Search (Information Retreival)
+# Search (Information Retrieval)
 Yelp-Data-Challenge
 
 # Task 1:

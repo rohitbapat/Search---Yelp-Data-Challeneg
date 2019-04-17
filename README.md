@@ -1,5 +1,5 @@
 # Search (Information Retreival)
-# Yelp-Data-Challenge
+Yelp-Data-Challenge
 
 # Task 1:
 

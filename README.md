@@ -52,8 +52,8 @@ We used Anaconda Distribution with Python 3 Python version.
 - Make sure the `Search.py` and `Sample.py` files are in same location.
 - Make sure the `index.html` and `result.html` exists in `templates` directory. 
 - run the following command on the console `python Search.py`.
-<?
-(base) D:\Search\YelpData\Project\MapRepo\Flask-GoogleMaps>python Search.py
+
+`(base) D:\Search\YelpData\Project\MapRepo\Flask-GoogleMaps>python Search.py
 C:\Users\rohit\Anaconda3\lib\site-packages\sklearn\utils\fixes.py:313: FutureWarning: numpy not_equal will not check object identity in the future. The comparison did not return the same result as suggested by the identity (`is`)) and will change.
   _nan_object_mask = _nan_object_array != _nan_object_array
  * Serving Flask app "Search" (lazy loading)
@@ -66,8 +66,8 @@ C:\Users\rohit\Anaconda3\lib\site-packages\sklearn\utils\fixes.py:313: FutureWar
   _nan_object_mask = _nan_object_array != _nan_object_array
  * Debugger is active!
  * Debugger PIN: 250-945-521
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-?> 
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
+ 
 - On getting this message on console, go to the browser type in `localhost:5000`
 - The console will now show `Load Started` and after some time changes to `Load Completed` state.
 - On the UI, enter a User ID like For eg: `---1lKK3aKOuomHnwAkAow` , Latitude : `36.099872` , Longitude: `-115.074574`, Query: `burger`

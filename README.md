@@ -53,21 +53,8 @@ We used Anaconda Distribution with Python 3 Python version.
 - Make sure the `index.html` and `result.html` exists in `templates` directory. 
 - run the following command on the console `python Search.py`.
 
-`(base) D:\Search\YelpData\Project\MapRepo\Flask-GoogleMaps>python Search.py
-C:\Users\rohit\Anaconda3\lib\site-packages\sklearn\utils\fixes.py:313: FutureWarning: numpy not_equal will not check object identity in the future. The comparison did not return the same result as suggested by the identity (`is`)) and will change.
-  _nan_object_mask = _nan_object_array != _nan_object_array
- * Serving Flask app "Search" (lazy loading)
- * Environment: production
-   WARNING: Do not use the development server in a production environment.
-   Use a production WSGI server instead.
- * Debug mode: on
- * Restarting with stat
-C:\Users\rohit\Anaconda3\lib\site-packages\sklearn\utils\fixes.py:313: FutureWarning: numpy not_equal will not check object identity in the future. The comparison did not return the same result as suggested by the identity (`is`)) and will change.
-  _nan_object_mask = _nan_object_array != _nan_object_array
- * Debugger is active!
- * Debugger PIN: 250-945-521
- * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)`
- 
+![](https://github.com/rohitbapat/Search---Yelp-Data-Challenge/blob/Task2/Task2_Run.PNG)
+
 - On getting this message on console, go to the browser type in `localhost:5000`
 - The console will now show `Load Started` and after some time changes to `Load Completed` state.
 - On the UI, enter a User ID like For eg: `---1lKK3aKOuomHnwAkAow` , Latitude : `36.099872` , Longitude: `-115.074574`, Query: `burger`

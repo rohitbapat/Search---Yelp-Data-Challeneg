@@ -18,3 +18,9 @@ This approach was mainly used for recommendations based on the similarity betwee
 | User 1      | 3.5 | NaN |
 | User 2      | 4.0 | 5.0 |
 | User 3 	  | NaN | 3.0 |
+
+| Left-Aligned  | Center Aligned  | Right Aligned |
+| :------------ |:---------------:| -----:|
+| col 3 is      | some wordy text | $1600 |
+| col 2 is      | centered        |   $12 |
+| zebra stripes | are neat        |    $1 |

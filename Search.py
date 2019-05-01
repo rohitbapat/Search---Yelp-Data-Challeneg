@@ -1,4 +1,6 @@
+# import the Sample.py for functions
 import Sample
+# render_template to load index and result htmls
 from flask import Flask, request, render_template
 from flask_jsonpify import jsonpify
 import pandas as pd
@@ -12,6 +14,7 @@ global predictionDF
 global df_dense
 global count_vectorizer
 
+# initiation of the execution
 @app.route('/')
 def index():
     global business_Lasvegas
@@ -19,9 +22,10 @@ def index():
     global df_dense
     global count_vectorizer
     business_Lasvegas,predictionDF,df_dense,count_vectorizer = Sample.load_data()
+    # load the opening page
     return render_template('index.html')
     
-
+# get the data from user through a POST request
 @app.route('/', methods=['POST'])
 def my_form_post():
     global business_Lasvegas
@@ -32,16 +36,15 @@ def my_form_post():
     latitude = request.form['latitude']
     longitude = request.form['longitude']
     query = request.form['query']
-    #query = 'spa cafe'
-    #user = '---1lKK3aKOuomHnwAkAow'
-    #latitude = 36.099872
-    #longitude = -115.074574
+    # call the similarity prediction function
     similarityPrediction = Sample.similarity(query,business_Lasvegas,df_dense,count_vectorizer)
     matrixPrediction = Sample.getPredictionsByMatrixFactorization(user,predictionDF,business_Lasvegas)
     df = pd.concat([matrixPrediction, similarityPrediction], ignore_index=True)
+    # apply distance sorting function
     df['Distance'] = df.apply(Sample.find_closest,lat = latitude, long = longitude, axis = 1)
     df[['latitude','longitude','Distance']]
     result_df = df.sort_values(by=['Distance'])
+    # get current time for business operation status
     curr_time = time.ctime()
     day = curr_time.split(' ')[0]
     day_dict = {'Mon':'Monday','Tue':'Tuesday','Wed':'Wednesday','Thu':'Thursday','Fri':'Friday','Sat':'Saturday','Sun':'Sunday'}
@@ -82,25 +85,8 @@ def my_form_post():
     result_df['open_close'] = open_close
     result_df['status'] = status
     result_df = result_df[['name','Distance','stars','open_close','status']]
-    #print(result_df)
-    #JSONP_data = jsonpify(result_df)
-    #return JSONP_data
-    #return render_template('result.html', result = result_df)
+    # render the result to result.html 
     return render_template('result.html',  tables=[result_df.to_html(classes='data')], titles=result_df.columns.values)
 
 if __name__ == '__main__':
     app.run(debug = True) 
-    #index()
-    #my_form_post()
-    #print(business_Lasvegas.head())
-    
-'''
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def index():
-   return '<form method="POST">User ID:<br><input type="text" name="userid"><br><br>Current Location<br>Latitude:<br><input type="text" name="latitude"><br>Longitude:<br><input type="text" name="longitude"><br><br><input type="submit" value="Submit"></form>'
-if __name__ == '__main__':
-   app.run(debug = True)
-'''

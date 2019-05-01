@@ -1,3 +1,4 @@
+# import statements
 import numpy as np
 import pandas as pd
 import pickle as pk
@@ -11,15 +12,15 @@ from scipy.sparse.linalg import svds
 import math
 from sklearn.model_selection import train_test_split
 
-# Load Business data
-
+# Load data required for the offline and online recommendation
 def load_data():
     print('Load Started')
-    
     filedata =  open('D:/Search/YelpData/yelp_dataset/business.json', 'rb')
     businessDF = pd.read_json(filedata, lines=True)
+    # filter the dataframe for only Las Vegas data
     business_Lasvegas = businessDF[businessDF['city'] == "Las Vegas"]
     
+    # Optional module for loading the matrix factorization data
     '''
     # Review Data
     # reviewDF = pd.read_json(open('/content/gdrive/My Drive/Colab Notebooks/test.json'), lines=True)
@@ -80,38 +81,44 @@ def load_data():
     
     del all_user_predicted_ratings
     '''
+    # Instead we load this precomputed DataFrame from pickle file
     predictionDF = pk.load(open("D:/Search/YelpData/yelp_dataset/predictionDF.pkl",'rb'))
     count_vectorizer = TfidfVectorizer(stop_words='english',lowercase=True)
-    #count_vectorizer = CountVectorizer()
+    # generate a sparse matrix of the buiness names
     sparse_matrix = count_vectorizer.fit_transform(business_Lasvegas['name'])
     
+    # convert matrix to a dense matrix
     doc_term_matrix = sparse_matrix.todense()
     df_dense = pd.DataFrame(doc_term_matrix, columns=count_vectorizer.get_feature_names())
     print('Load Completed')
+    # return the 3 dataframes required. return vectorizer to vectorize test query
     return business_Lasvegas,predictionDF,df_dense,count_vectorizer
     
+# function to get cosine similarity of the query term with dense matrix
 def similarity(search,business_Lasvegas,df_dense,count_vectorizer):
+    # use same vectorizer for a same dimension matrix
     Y = count_vectorizer.transform([search])
     Y = Y.todense()
     
-    check_similarity = cosine_similarity(Y, df_dense) 
+    # use cosine similarity of sklearn to get a score of similarity
+    check_similarity = cosine_similarity(Y, df_dense)
+    # map similarity scores and business_ids
     df_sim = pd.DataFrame({'business_id':business_Lasvegas['business_id'],'scores':check_similarity[0].tolist()})
     df_sim = df_sim.sort_values(by=['scores'],ascending=False)
     businessSimilarity = df_sim['business_id'].head(10)
     li = list(businessSimilarity.value_counts().index)
+    # return dataframe from similarity prediction
     similarityPrediction = business_Lasvegas.loc[business_Lasvegas['business_id'].isin(li)]
     return similarityPrediction
 
-###
-###
+
+# sort the combined data
 def find_closest(row,lat,long):
     user_location = [float(lat),float(long)]
-    #user_location = [float(36.099872),float(-115.074574)]
+    # Haversine Distance adopted from https://stackoverflow.com/questions/4913349/haversine-formula-in-python-bearing-and-distance-between-two-gps-points
     R = 6373.0
     lon2 = float(row['longitude'])
     lat2 = float(row['latitude'])
-    #lon2 = float(-115.074574)
-    #lat2 = float(36.099872)
     lon1 = user_location[1]
     lat1 = user_location[0]
     dlon = lon2 - lon1
@@ -119,7 +126,7 @@ def find_closest(row,lat,long):
     a = (math.sin(dlat/2))**2 + math.cos(lat1) * math.cos(lat2) * (math.sin(dlon/2))**2
     c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
     distance = R * c
-    #dist.append(distance)
+    # return the distance from the user
     return distance
 
 def getPredictionsByMatrixFactorization(user,predictionDF,business_Lasvegas):
@@ -127,27 +134,8 @@ def getPredictionsByMatrixFactorization(user,predictionDF,business_Lasvegas):
     businessVal = {}
     for col in a.columns:
         businessVal[col] = a[col][user]
-
+    # get predictions from matrix factorization method
     businesses = sorted(businessVal.items(), key=lambda x: x[1], reverse=True)[:15]
     li = [x for x,y in businesses]
     matrixPrediction = business_Lasvegas.loc[business_Lasvegas['business_id'].isin(li)]
     return matrixPrediction
-'''
-###
-user = '--1mPJZdSY9KluaBYAGboQ'
-matrixPrediction = getPredictionsByMatrixFactorization(user)
-###
-
-# business_Lasvegas[business_Lasvegas['business_id'] in li]
-#matrixPrediction = business_Lasvegas.loc[business_Lasvegas['business_id'].isin(li)]
-###
-
-#df = pd.concat([matrixPrediction, similarityPrediction], ignore_index=True)
-
-#del matrixPrediction
-#del similarityPrediction
-
-#df['Distance'] = df.apply(find_closest,axis = 1)
-#df[['latitude','longitude','Distance']]
-#result_df = df.sort_values(by=['Distance'])
-'''

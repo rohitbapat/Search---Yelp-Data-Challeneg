@@ -35,7 +35,10 @@ Since, we were using reviews as query and they were really large texts, it was t
 
 # TF-IDF
 To find TFIDF, we first performed indexing on the Business Ids using Standard Analyser and then we calculate TFIDF to predict the category.
+
 TF = number of terms t in document D /total number of terms in the document
+
 we consider reviews as our documents and, 
+
 IDF = log(1+(total number of documents in the corpus/frequency of document for term t))
 using these values, we rank the categories to a TF\*IDF score and the top categories are the desired output.

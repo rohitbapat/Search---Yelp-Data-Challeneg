@@ -13,14 +13,9 @@ We implemented this task in 5 phases namely,
 
 ## Collaborative Filtering
 This approach was mainly used for recommendations based on the similarity between the users.  We used the matrix factorization method to have businesses and users as the startinf matrix with star ratings as node value. The example of the matrix is:
-|   | Business_1  | Business_n |
-| :------------ |:---------------:| -----:|
-| User 1      | 3.5 | NaN |
-| User 2      | 4.0 | 5.0 |
-| User 3 	  | NaN | 3.0 |
 
-| Left-Aligned  | Center Aligned  | Right Aligned |
+| -  | Business_1  | Business_2 |
 | :------------ |:---------------:| -----:|
-| col 3 is      | some wordy text | $1600 |
-| col 2 is      | centered        |   $12 |
-| zebra stripes | are neat        |    $1 |
+| User_1      | some wordy text | $1600 |
+| User_2      | centered        |   $12 |
+| User_n | are neat        |    $1 |

@@ -1,16 +1,8 @@
-# Search---Yelp-Data-Challeneg
-Yelp Dataset Challenge Files
+# Search - Information Retreival (ILS- Z534)
 
-Recommendations based on Review and tips.
-Json Files:
-Review.json, tips.json, user.json,checkin.json,business.json
-Methodologies:
-Collaborative Filtering
-MAE
+# Yelp Data Challenge
 
+Tasks Accompalished:
 
-Fuzzy Query Recommendations
-Review.json, tips.json, user.json,checkin.json,business.json
-Query Extraction
-Ranking
-MAE
+- Task 1: Determining the category of the query based on reviews. (Please check branch task1 for more details)
+- Task 2: Recommend Restaurants. (Please check branch Task2 for more details)

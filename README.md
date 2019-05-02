@@ -45,7 +45,7 @@ using these values, we rank the categories to a TF\*IDF score and the top catego
 
 # Steps to execute Task 1:
 - Clone the task1 branch
-- Download Combined_Data.csv and business_data_lasvegas.pkl from the below link:
+- Download Combined_Data.csv, business_data_lasvegas.pkl,train.csv from the below link:
 
 - install anaconda for python installation
 - pip install numpy

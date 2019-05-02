@@ -15,7 +15,7 @@ from sklearn.model_selection import train_test_split
 # Load data required for the offline and online recommendation
 def load_data():
     print('Load Started')
-    filedata =  open('D:/Search/YelpData/yelp_dataset/business.json', 'rb')
+    filedata =  open('business.json', 'rb')
     businessDF = pd.read_json(filedata, lines=True)
     # filter the dataframe for only Las Vegas data
     business_Lasvegas = businessDF[businessDF['city'] == "Las Vegas"]
@@ -82,7 +82,7 @@ def load_data():
     del all_user_predicted_ratings
     '''
     # Instead we load this precomputed DataFrame from pickle file
-    predictionDF = pk.load(open("D:/Search/YelpData/yelp_dataset/predictionDF.pkl",'rb'))
+    predictionDF = pk.load(open("predictionDF.pkl",'rb'))
     count_vectorizer = TfidfVectorizer(stop_words='english',lowercase=True)
     # generate a sparse matrix of the buiness names
     sparse_matrix = count_vectorizer.fit_transform(business_Lasvegas['name'])

@@ -1,4 +1,6 @@
 # Task 2
+## Pickle File Download
+From the `Submission Files`  on the box download the predictionDF.pkl which has the precomputed user matrix. 
 ## Problem Statement
 The purpose of Yelp Dataset Challenge was to solve the real time problems where the root motive is to recommend places to user for their visit. This whole process is a feedback to the Yelp system to recommend better and better businesses.Our aim of this task was to design a system to give recommendations to the user based on the user_id, location, similar users and search queries. As the original dataset was huge we limited this task to just Las Vegas city.
 
@@ -60,3 +62,4 @@ We used Anaconda Distribution with Python 3 Python version.
 - On the UI, enter a User ID like For eg: `---1lKK3aKOuomHnwAkAow` , Latitude : `36.099872` , Longitude: `-115.074574`, Query: `burger`
 - Click Submit
 - The result page renders a table with the recommendation based on the user_id and query. It also tells you the operation status and hours of operation with respect to current time.
+

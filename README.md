@@ -46,6 +46,7 @@ using these values, we rank the categories to a TF\*IDF score and the top catego
 # Steps to execute Task 1:
 - Clone the task1 branch
 - Download Combined_Data.csv, business_data_lasvegas.pkl, train.csv from the below link:
+https://iu.box.com/s/4wzcvznvmucyqgkbvq25y4wgwytx7erp
 
 - install anaconda for python installation
 - pip install numpy
@@ -59,3 +60,4 @@ using these values, we rank the categories to a TF\*IDF score and the top catego
 - Update the path of the standardAnalyzer, LDATop100.csv, and TFIDFFile_LDA100.txt in EasySearch.java file and execute.
 
 ** Note: For faster execution, you can download combinedDF.csv, LDATop100.csv, and TFIDFFile_LDA100.txt from the box for GenerateIndex.java and EasySearch.java
+https://iu.box.com/s/4wzcvznvmucyqgkbvq25y4wgwytx7erp
